@@ -1,0 +1,229 @@
+<html>
+
+<head>
+    <title>Eau Rose Eau De Toilette Limeted Edition/ Diptique Paris</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Sen&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
+
+    <script type="text/javascript">
+
+        function add() {
+            document.getElementById("count").value++;
+        }
+
+        function sub() {
+            if (document.getElementById("count").value >1) {
+                document.getElementById("count").value--;
+            } else {
+                alert ('Incorrect Quantity!');
+            }
+            
+        }
+
+        function input() {
+            let email = document.getElementById("email-box").value;
+            let number = document.getElementById("num-box").value;
+            let Eform = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+            let Nform = /(?:\d{3}|\d{4})\d{4}$/;
+
+
+            if (Eform.test(email) === false && Nform.test(number) === false) {
+                return alert ('Check your info.')
+            }
+
+            if (Eform.test(email) === false ) {
+                alert ('Check your E-mail.');
+                document.getElementById("email-box").style["color"] = "red";
+                document.getElementById("email-box").style["border-width"] = "0 0 1px";
+                document.getElementById("email-box").style["border-color"] = "red";
+                document.getElementById("email-box").focus();
+            } else {
+                document.getElementById("email-box").style = "";
+                document.getElementById("email-box").placeholder = "Your E-mail";
+                document.getElementById("email-box").className = "";
+            }
+
+            if (Nform.test(number) === false ) {
+                alert ('Check your number.');
+                document.getElementById("num-box").style["color"] = "red";
+                document.getElementById("num-box").style["border-width"] = "0 0 1px";
+                document.getElementById("num-box").style["border-color"] = "red";
+                document.getElementById("num-box").focus();
+            } else {
+                document.getElementById("num-box").style = "";
+                document.getElementById("num-box").placeholder = "Your Number";
+                document.getElementById("num-box").className = "";
+            }
+        }
+
+        function make_order() {
+            let email = document.getElementById("email-box").value;
+            let number = document.getElementById("num-box").value;
+            let numberCode = document.getElementById("numberCode").value;
+            let count = document.getElementById("count").value;
+
+            if (email === '' && number === '') {
+                alert ('Input your info.');
+                return;
+            } else if (email === '') {
+                alert('Input your E-mail');
+                email.focus();
+                return;
+            } else if (number === '') {
+                alert('Input your Number');
+                number.focus();
+                return;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/orders",
+                data: {email_give: email, number_give: number, count_give: count},
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        alert (response['msg']);
+                        document.getElementById("email-box").value;
+                        document.getElementById("num-box").value;
+                        document.getElementById("count").value;
+                        window.location.reload();
+                    }
+                }
+            })
+        }
+
+        $(document).ready(function () {
+            $('#orders-box').html('');
+            listing();
+        });
+
+        function listing() {
+            $.ajax({
+                type: "GET",
+                url: "/orders",
+                data: {},
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        let orders = response['orders'];
+                        for (let i=0; i < orders.length; i++) {
+                            make_purchase(orders[i]['email'], orders[i]['number'], orders[i]['count']);
+                        }
+                    } else {
+                        alert('Can not receive information!');
+                    }
+                }
+            });
+        }
+
+        function make_purchase (email, number, count) { 
+            let numberCode = document.getElementById("numberCode").value;
+            let make_list = '<tr>\
+                                <td>'+ email + '</td>\
+                                <td>'+ numberCode + '-' + number + '</td>\
+                                <td>'+ count + '</td>\
+                            </tr>';
+            $('#orders-box').append(make_list);
+         }
+
+    </script>
+
+</head>
+
+<body>
+
+<div class="flex-container">
+
+    <div class="product">
+        <img src="static/TEMPO-DOS.png"/>
+        <h2><div>EAU ROSE EAU DE TOILETTE</div>
+            <div>LIMITED EDITION</div></h2>
+        <div class="price">108€/ 100ML</div>
+    </div>
+
+    <div class="myinfo">
+        <div class="detail">
+            <p>Pick up the petals of a rose, add its green leaves, 
+                its stem, and don’t forget its buds. 
+                Immerse in clear water and wait to reveal its rosy 
+                delicateness, fruity accents and acidulated green notes... 
+                Eau Rose is composed like an infusion of the finest damascena 
+                and centifolia roses.</p>
+            <p>For this limited edition collection, diptyque collaborated 
+                with digital floral artist Bas Meeuws. Together, they 
+                reinterpret the iconic floral fragrances of the House in 
+                the form of modern still lifes, using hidden details to 
+                reveal the story behind each scent.</p>
+        </div>
+
+        <hr>
+
+        <div class="customer-warp">
+        <h4>Customer Service</h4>
+        <p>
+
+        <div class="customer-service">
+
+             <div class="customer-box">
+
+                <input type="text" id="email-box" placeholder="Your E-mail">
+
+                <div class="number-box">
+                <select name="numberCode" id="numberCode">
+                    <option value="010" Selected>010</option>
+                    <option value="011" >011</option>
+                    <option value="016" >016</option>
+                    <option value="017" >017</option>
+                    <option value="018" >018</option>
+                    <option value="019" >019</option>
+                </select>
+                <input type="text" id="num-box" placeholder="Your Number">
+                </div>
+            </div>
+
+            <div class="Quantity">
+                <button id="minus" type="button" onclick="sub()">-</button>
+                <input type="text" id="count" value="1"></input>
+                <button id="plus" type="button" onclick="add()">+</button>
+            </div>
+
+        </div>
+
+
+        </p>
+
+        <button type="button" onclick="input(); make_order();">
+        <strong>
+            <div>Make a Purchase</div>
+        </strong>
+        </button>
+    </div>
+</div>
+
+<div class= "orders">
+    <table class= "tables">
+        <thead>
+            <tr>
+                <th>E-mail</th>
+                <th>Number</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody id="orders-box">
+            <tr>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+
+</html>

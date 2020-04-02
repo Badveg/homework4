@@ -1,0 +1,251 @@
+    body {
+        background-color: black;
+        font-family: 'Sen', sans-serif;
+    }
+
+    .flex-container {
+        display: flex;
+        align-items:flex-start;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .orders {
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+        justify-content: center;
+        max-width: 1280px;
+        width: 100%;
+        margin-bottom: 100px;
+    }
+
+    .tables {
+        width: 80%;
+        border-top: 1px solid seashell;
+        border-collapse: collapse;
+        text-align: center;
+        color: seashell;
+    }
+
+    th, td {
+        padding: 20px;
+    }
+
+    td {
+        color: seashell;
+    }
+
+    #orders-box {
+        width: 100%;
+        border-top: 1px solid seashell;
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+    .product {
+        margin: 0 30px;
+        max-width: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .product >img {
+        width: 120%;
+        min-width: 400px;
+        background-image:url("bg2.png");
+        background-size: cover;
+        background-position:center;
+
+    }
+
+    .product >h2 {
+        padding: 20px;
+        color:seashell;
+    }
+
+    .price {
+        font-size: 18px;
+        color: seashell;
+    }
+
+    .detail {
+        font-size: 14px;
+        color:seashell;
+    }
+
+    @media screen and (max-width: 768px) {
+        .detail {
+            font-size: 14px;
+            color:seashell;
+            text-align: center;
+        }   
+    }
+
+    .myinfo {
+        margin: 90px 100px;
+        max-width: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        color:seashell;
+    }
+
+    @media screen and (max-width: 768px) {
+        .myinfo {
+            margin: 40px 50px;
+            align-items: center;
+        } 
+    }
+
+    hr {
+        height: 1px;
+        width: 100%;
+        border: none;
+        background: seashell;
+        margin: 30px auto;
+    }
+
+    .customer-warp {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .customer-warp >h4 {
+        text-align: center;
+        font-size: 24px;
+    }
+
+    .customer-service {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    @media screen and (max-width: 768px) {
+        .customer-service {
+            flex-direction: column;
+        } 
+    }
+
+    .number-box {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .customer-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #email-box {
+        margin: 10px auto;
+        width: 80%;
+        padding: 7px 10px;
+        outline: 0;
+        border-width: 0 0 1px;
+        border-color: darkolivegreen;
+        background-color: transparent;
+        color: white;
+    }
+
+    #num-box {
+        margin: 10px 0;
+        width: 50%;
+        padding: 7px 13px;
+        outline: 0;
+        border-width: 0 0 1px;
+        border-color: darkolivegreen;
+        background-color: transparent;
+        color: white;
+    }
+
+    #numberCode {
+        margin: 10px 0;
+        width: 30%;
+        padding: 7px 10px;
+        outline: 0;
+        border-width: 0;
+        background-color: transparent;
+        color: rgb(185, 185, 185);
+    }
+
+    .Quantity {
+        margin: 15px 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 30%;
+        border-style: solid;
+        border-width: 0;
+        color: white;
+    }
+
+    .Quantity >button {
+        margin: 15px;
+        width: 35px;
+        height: 35px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: white;
+        color: white;
+        background-color: transparent;
+        font-size: 30px;
+        line-height: 30px;
+    }
+
+    .Quantity >button:hover {
+        background-color: white;
+        color: black;
+    }
+
+    #count {
+        width: 50px;
+        margin: auto 10px;
+        font-size: 30px;
+        background-color: transparent;
+        color: white;
+        border:none;
+        text-align: center;
+    }
+
+    @media screen and (max-width: 768px) {
+        .Quantity {
+            margin-top: 30px;
+        } 
+    }
+
+    .customer-warp >button {
+        margin: 20px auto;
+        padding: 15px 25px;
+        font-size: 18px;
+        border-radius: 5px;
+        border-color: darksalmon;
+        border-style: solid;
+        border-width: 1px;
+        background-color: transparent;
+        color: darksalmon;
+    }
+
+    @media screen and (max-width: 768px) {
+        .customer-warp >button {
+            margin: 0 auto;
+        } 
+    }
+
+    .customer-warp >button:hover {
+        background-color: darksalmon;
+        color: black;
+    }
